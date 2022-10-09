@@ -1,0 +1,15 @@
+{
+  "name": "back",
+  "version": "1.0.0",
+  "description": "Api de una app para un blog de cafe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cafe",
+    "blog"
+  ],
+  "author": "Miguel Angel PM",
+  "license": "ISC"
+}
