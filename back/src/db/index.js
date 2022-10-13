@@ -1,5 +1,7 @@
 const { NODE_ENV, DB_USER, DB_PASS, DB_BD, DB_HOST, DB_DRIVER } = require('dotenv').config().parsed;
 const { Sequelize, Op } = require('sequelize');
+const modelUser = require('./models/User');
+
 const sequelize = NODE_ENV === 'production'
     ? new Sequelize({
         database: DB_BD,
@@ -26,3 +28,14 @@ const sequelize = NODE_ENV === 'production'
         logging: false,
         native: false
     });
+
+/**inicializar modelos */
+
+modelUser(sequelize);
+
+/**exportar modulo */
+module.exports = {
+    ...sequelize.models,
+    conn: sequelize,
+    Op
+}
