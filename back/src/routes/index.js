@@ -5,7 +5,7 @@ const usersRoutes = require("./usersRoutes");
 const routes = Router();
 
 routes.use('/api', [
-    usersRoutes
+    routes.use('/users', usersRoutes)
 ]);
 
 module.exports = routes;

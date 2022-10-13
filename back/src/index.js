@@ -41,9 +41,9 @@ app.use(cors(corsOption));
 
 
 /**set routes */
-app.get('/welcom', (req, res) => {
-    res.status(200).json({ msg: 'wellcom to api blog coffe' })
-})
+// app.get('/welcom', (req, res) => {
+//     res.status(200).json({ msg: 'wellcom to api blog coffe' })
+// })
 app.use('/', routes);
 
 /**catch errors */

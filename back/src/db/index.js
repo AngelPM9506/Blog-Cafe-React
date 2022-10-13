@@ -30,7 +30,6 @@ const sequelize = NODE_ENV === 'production'
     });
 
 /**inicializar modelos */
-
 modelUser(sequelize);
 
 /**exportar modulo */
