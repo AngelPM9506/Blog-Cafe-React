@@ -1,4 +1,4 @@
-const { User } = require('../db');
+const { User, Rolle } = require('../db');
 const { hashPass } = require('../Utils/auth');
 
 const setError = (error) => {
@@ -8,7 +8,7 @@ const setError = (error) => {
 const UserController = {
     getUsers: async (req, res) => {
         try {
-            let result = await User.findAll({ paranoid: false });
+            let result = await User.findAll({ include: [Rolle], paranoid: false });
             res.status(200).json({ status: 'success', Users: result });
         } catch (error) {
             res.json(setError(error))
@@ -19,7 +19,8 @@ const UserController = {
         if (!email || !password) return res.status(404).json({ status: 'error', msg: 'Mising data try again' });
         try {
             password = await hashPass(password)
-            let result = await User.create({ email, password });
+            let toAddUser = await Rolle.findOne({ where: { rolle: 'User' } });
+            let result = await toAddUser.createUser({ email, password }, { include: [Rolle] });
             res.status(201).json({ status: 'success', user: result })
         } catch (error) {
             res.json(setError(error))

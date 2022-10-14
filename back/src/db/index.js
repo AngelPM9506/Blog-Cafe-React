@@ -1,6 +1,7 @@
 const { NODE_ENV, DB_USER, DB_PASS, DB_BD, DB_HOST, DB_DRIVER } = require('dotenv').config().parsed;
-const { Sequelize, Op } = require('sequelize');
+const { Sequelize, Op, DataTypes } = require('sequelize');
 const modelUser = require('./models/User');
+const modelRolle = require('./models/Rolle');
 
 const sequelize = NODE_ENV === 'production'
     ? new Sequelize({
@@ -31,6 +32,13 @@ const sequelize = NODE_ENV === 'production'
 
 /**inicializar modelos */
 modelUser(sequelize);
+modelRolle(sequelize);
+
+/**relacion entre tablas*/
+const { User, Rolle } = sequelize.models;
+
+Rolle.hasOne(User, { foreignKey: { type: DataTypes.UUID } });
+User.belongsTo(Rolle)
 
 /**exportar modulo */
 module.exports = {
