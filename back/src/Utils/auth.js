@@ -1,4 +1,5 @@
 const cripto = require('bcryptjs');
+const { User, Rolle } = require('../db');
 
 const hashPass = async (pass) => {
     try {
@@ -21,7 +22,27 @@ const comparePass = async (pass, resgisterPass) => {
     }
 }
 
+const isAdmin = async (deToken) => {
+    let condition = { where: { id: deToken.Id }, include: [Rolle] };
+    let userFound = await User.findOne(condition);
+    if (userFound && userFound.Rolle.rolle === 'Admin') {
+        return true;
+    }
+    return false;
+}
+
+const itsMyUser = async (deToken, id) => {
+    let userFound = await User.findByPk(deToken.Id);
+    //console.log(userFound);
+    if (userFound && (id === userFound.id || deToken.Rolle === 'Admin')) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     hashPass,
-    comparePass
+    comparePass,
+    isAdmin,
+    itsMyUser
 };

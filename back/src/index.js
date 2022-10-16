@@ -4,17 +4,19 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
+require('dotenv').config();
 
 /**declare server of express */
 const app = express();
 
 /**declare corsoptions */
 const corsOption = {
-    origin: '*',
+    origin: process.env.ALLOW_ORIGIN || '*',
     methods: [
         'GET',
         'POST',
         'PUT',
+        'PATCH',
         'DELETE'
     ],
     allowedHeaders: [
