@@ -62,7 +62,7 @@ const UserController = {
         if (!email && (!password && !confirmPass)) {
             return res.status(404).json({ status: 'error', msg: 'Mising data try again' });
         }
-        if (password && (password !== confirmPass)) {
+        if ((password && (password !== confirmPass)) || (password && !confirmPass) || (!password && confirmPass)) {
             return res.status(409).json({ status: 'error', msg: 'Password no confirmed, try again' })
         }
         if (! await itsMyUser(deToken, id)) {
@@ -71,8 +71,8 @@ const UserController = {
         try {
             password ? password = await hashPass(password) : null;
             let result = await User.update({ email, password }, { where: { id } });
-            if (result[0] === 0) return res.status(404).json({ status: 'error', msg: 'Error to update' })
-            result = await User.findByPk(id)
+            if (result[0] === 0) return res.status(404).json({ status: 'error', msg: 'Error to update', result })
+            result = await User.findByPk(id, { include: [Rolle] })
             res.status(201).json({ status: 'success', user: result })
         } catch (error) {
             res.json(setError(error))

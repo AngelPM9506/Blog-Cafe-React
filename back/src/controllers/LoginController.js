@@ -32,15 +32,15 @@ const logingController = {
                 JSON.stringify({ key: SECRET_KEY_TOKEN, passphrase: SECRET_PHRASE_TOKEN }) || 'BlogCafe',
                 { expiresIn: '30d' }
             );
-            console.log(JSON.stringify({ key: SECRET_KEY_TOKEN, passphrase: SECRET_PHRASE_TOKEN }));
+            //console.log(JSON.stringify({ key: SECRET_KEY_TOKEN, passphrase: SECRET_PHRASE_TOKEN }));
             /**retornar el token */
-            res.status(200).cookie('logIn_BC', `${token}`).json({ status: 'success', token: token });
+            res.status(200).cookie('logIn_BC', `${token}`).json({ status: 'success', token: token, dataUser: dataToken });
         } catch (error) {
             res.json(setError(error))
         }
     },
     logUout: async (req, res) => {
-        res.clearCookie('logIn_BC').json({status: 'succes', msg: 'logOut successfuly see you...'});
+        res.clearCookie('logIn_BC').json({ status: 'succes', msg: 'logOut successfuly see you...' });
     }
 }
 
