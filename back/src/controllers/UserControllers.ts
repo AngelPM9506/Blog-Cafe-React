@@ -18,7 +18,7 @@ const UserControllers = {
         }
         try {
             let defaultRolle = await models.Rolle.findOne({ where: { rolle: 'User' } });
-            let result = await defaultRolle.createUser({ email, password }, { include: [models.Rolle] });
+            //let result = await defaultRolle.createUser({ email, password }, { include: [models.Rolle] });
         } catch (error: any) {
             return res.json(sendError(error));
         }
