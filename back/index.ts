@@ -1,11 +1,14 @@
-import server from './src/server';
-import database from './src/database';
-const { PORT } = require('dotenv').config().parsed
+import app from "./src";
+import dotenv from "dotenv";
+import { conn } from "./src/db";
+import { defaultValues } from "./src/utils/defaultValues";
+dotenv.config();
 
+const { PORT } = process.env;
 
-database.conn.sync({ force: true }).then(async function () {
-    server.listen(PORT, () => {
-        console.log(`[server]: Server is Runing at htts://127.0.0.1:${PORT}`);
+conn.sync({ force: true }).then(() => {
+    defaultValues();
+    app.listen(PORT, () => {
+        console.log(`[API-BLOG-COFFE] listenig at htt://127.0.0.1:${PORT}`);
     });
-})
-
+});

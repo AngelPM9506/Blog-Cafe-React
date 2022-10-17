@@ -1,8 +1,8 @@
-import { Router, Request, Response } from 'express';
-import userRouter from './UserRouter';
+import { Request, Response, Router } from "express";
+import userRoutes from "./userRoutes";
 
-const router = Router();
+const routes = Router();
 
-router.use('/api', [userRouter]);
+routes.use('/users', userRoutes)
 
-export default router;
+export default routes;
