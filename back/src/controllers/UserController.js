@@ -18,15 +18,23 @@ const UserController = {
         }
     },
     newUser: async (req, res) => {
-        let { email, password } = req.body;
-        if (!email || !password) return res.status(404).json({ status: 'error', msg: 'Mising data try again' });
+        let { email, password, confirmPass } = req.body;
+        if (!email || !password || !confirmPass) {
+            return res.status(404).json({ status: 'error', msg: 'Mising data try again' });
+        }
+        if (password !== confirmPass) {
+            return res.status(409).json({ status: 'error', msg: 'Password no confirmed, try again' })
+        }
         try {
             password = await hashPass(password)
             let toAddUser = await Rolle.findOne({ where: { rolle: 'User' } });
             let result = await toAddUser.createUser({ email, password }, { include: [Rolle] });
+            //console.log(result);
             res.status(201).json({ status: 'success', user: result })
         } catch (error) {
-            res.json(setError(error))
+            error.name === 'SequelizeUniqueConstraintError'
+                ? error.message === res.json(setError({ message: 'This user exist, try login' }))
+                : res.json(setError(error));
         }
     },
     getUser: async (req, res) => {
@@ -48,11 +56,18 @@ const UserController = {
         }
     },
     updateUser: async (req, res) => {
-        let { email, password } = req.body;
+        let { email, password, confirmPass } = req.body;
         let { id } = req.params;
         let { deToken } = req.headers;
-        if (!email && !password) return res.status(404).json({ status: 'error', msg: 'Mising data try again' });
-        if (! await itsMyUser(deToken, id)) return res.status(403).json({ status: 'error', msg: 'Error of authentication' });
+        if (!email && (!password && !confirmPass)) {
+            return res.status(404).json({ status: 'error', msg: 'Mising data try again' });
+        }
+        if (password && (password !== confirmPass)) {
+            return res.status(409).json({ status: 'error', msg: 'Password no confirmed, try again' })
+        }
+        if (! await itsMyUser(deToken, id)) {
+            return res.status(403).json({ status: 'error', msg: 'Error of authentication' });
+        }
         try {
             password ? password = await hashPass(password) : null;
             let result = await User.update({ email, password }, { where: { id } });

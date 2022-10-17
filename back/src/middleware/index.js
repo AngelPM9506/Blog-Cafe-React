@@ -4,7 +4,8 @@ let { SECRET_KEY_TOKEN, SECRET_PHRASE_TOKEN } = process.env
 
 const verifyToken = (req, res, next) => {
     let { authorization: beareHeader } = req.headers;
-    //console.log(beareHeader);
+    let { logIn_BC } = req.cookies;
+    console.debug(JSON.stringify(req.cookies));
     if (beareHeader) {
         req.headers.deToken = jwt.verify(beareHeader, JSON.stringify(
             {
