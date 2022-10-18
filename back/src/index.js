@@ -46,7 +46,7 @@ app.use(cors(corsOption));
 // app.get('/welcom', (req, res) => {
 //     res.status(200).json({ msg: 'wellcom to api blog coffe' })
 // })
-app.use('/', routes);
+app.use('/api', routes);
 
 /**catch errors */
 app.use((error, req, res, next) => {

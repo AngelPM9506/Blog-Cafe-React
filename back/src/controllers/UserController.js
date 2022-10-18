@@ -1,4 +1,4 @@
-const { User, Rolle } = require('../db');
+const { User, Rolle, Profile } = require('../db');
 const { hashPass, isAdmin, itsMyUser } = require('../Utils/auth');
 
 const setError = (error) => {
@@ -11,7 +11,7 @@ const UserController = {
         //console.log(await isAdmin(deToken));
         if (! await isAdmin(deToken)) return res.status(403).json({ status: 'error', msg: 'Error of authentication' });
         try {
-            let result = await User.findAll({ include: [Rolle], paranoid: false });
+            let result = await User.findAll({ include: [{ model: Rolle }, { model: Profile }], paranoid: false });
             res.status(200).json({ status: 'success', Users: result });
         } catch (error) {
             res.json(setError(error))
@@ -42,11 +42,11 @@ const UserController = {
         let { deToken } = req.headers;
         if (! await itsMyUser(deToken, id)) return res.status(403).json({ status: 'error', msg: 'Error of authentication' });
         try {
-            let resultFind = await User.findByPk(id)
+            let resultFind = await User.findByPk(id, { include: [{ model: Profile }] })
             if (!resultFind) return res.status(404).json({ status: 'error', msg: 'User not found try again or contact with the Admin' });
             let result = {};
             for (const key in resultFind.dataValues) {
-                if (key === 'id' || key === 'email') {
+                if (key === 'id' || key === 'email' || key === 'Profiles') {
                     result[key] = resultFind[key];
                 }
             }
@@ -71,7 +71,7 @@ const UserController = {
         try {
             password ? password = await hashPass(password) : null;
             let result = await User.update({ email, password }, { where: { id } });
-            if (result[0] === 0) return res.status(404).json({ status: 'error', msg: 'Error to update', result })
+            if (result[0] === 0) return res.status(404).json({ status: 'error', msg: 'Error to update' })
             result = await User.findByPk(id, { include: [Rolle] })
             res.status(201).json({ status: 'success', user: result })
         } catch (error) {
@@ -85,7 +85,7 @@ const UserController = {
         try {
             let result = await User.destroy({ where: { id } });
             //console.log(result);
-            res.status(201).json({ status: 'success', msg: result === 1 ? 'Succes to delete' : 'Error to delete' });
+            res.status(201).json({ status:  result === 1 ? 'success': 'error', msg: result === 1 ? 'Succes to delete' : 'Error to delete' });
         } catch (error) {
             res.json(setError(error));
         }
