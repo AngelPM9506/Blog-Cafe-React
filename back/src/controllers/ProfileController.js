@@ -76,7 +76,7 @@ const ProfileController = {
         res.status(201).json({
             status: resul === 1 ? 'succes' : 'error',
             msg: resul === 1 ? 'Profile delete succesfuly' : 'Error to delete Profile'
-        })
+        });
     }
 }
 
