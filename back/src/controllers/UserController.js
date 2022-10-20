@@ -32,9 +32,7 @@ const UserController = {
             //console.log(result);
             res.status(201).json({ status: 'success', user: result })
         } catch (error) {
-            error.name === 'SequelizeUniqueConstraintError'
-                ? error.message === res.json(setError({ message: 'This user exist, try login' }))
-                : res.json(setError(error));
+            res.json(setError(error));
         }
     },
     getUser: async (req, res) => {

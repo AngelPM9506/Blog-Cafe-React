@@ -3,6 +3,9 @@ const { Sequelize, Op, DataTypes } = require('sequelize');
 const modelUser = require('./models/User');
 const modelRolle = require('./models/Rolle');
 const modelProfile = require('./models/Profile');
+const modelPost = require('./models/Post');
+const modelCategory = require('./models/Category');
+const modelComment = require('./models/Comment');
 
 const sequelize = NODE_ENV === 'production'
     ? new Sequelize({
@@ -35,14 +38,65 @@ const sequelize = NODE_ENV === 'production'
 modelUser(sequelize);
 modelRolle(sequelize);
 modelProfile(sequelize);
+modelPost(sequelize);
+modelCategory(sequelize);
+modelComment(sequelize);
 
 /**relacion entre tablas*/
-const { User, Rolle, Profile } = sequelize.models;
+const { User, Rolle, Profile, Post, Category, Comment } = sequelize.models;
 
-Rolle.hasOne(User, { foreignKey: { type: DataTypes.UUID } });
+/**un usuario tiene un roll */
+Rolle.hasOne(User, {
+    foreignKey: { type: DataTypes.UUID },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+});
 User.belongsTo(Rolle);
-User.hasMany(Profile, { foreignKey: { type: DataTypes.UUID } });
+
+/**un usuario puede crear hasta tres perfiles */
+User.hasMany(Profile, {
+    foreignKey: { type: DataTypes.UUID },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+});
 Profile.belongsTo(User);
+
+/**un perfil puede crear muchos post*/
+Profile.hasMany(Post, {
+    foreignKey: { type: DataTypes.UUID },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+});
+Post.belongsTo(Profile);
+
+/**un Post puede tener muchas categorias y una categoria puede tener muchos post  */
+Post.belongsToMany(Category, {
+    through: 'Post-Category',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+Category.belongsToMany(Post, {
+    through: 'Post-Category',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
+});
+
+/**un comentario es creado por un Perfil y pertenece a un post 
+ * un post puede tener muchos comentarios 
+ * un Profile pude crear muchos comentrarios
+*/
+Profile.hasMany(Comment, {
+    foreignKey: { type: DataTypes.UUID },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+})
+Post.hasMany(Comment, {
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+})
+
+Comment.belongsTo(Profile);
+Comment.belongsTo(Post);
 
 /**exportar modulo */
 module.exports = {

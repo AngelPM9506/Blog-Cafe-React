@@ -16,6 +16,10 @@ module.exports = sequelize => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        avatar: {
+            type: DataTypes.STRING,
+            defaultValue: 'urlOfavatar'
+        }        ,
         alias: {
             type: DataTypes.STRING,
             allowNull: false

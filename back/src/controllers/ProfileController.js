@@ -9,15 +9,14 @@ const ProfileController = {
         let { myProfiles } = req.query;
         let { deToken } = req.headers;
         let { id } = req.params;
-        let condition = { include: { model: User } };
-        if (id) {
-            condition = { ...condition, where: { id } };
-        } else if (myProfiles) {
-            condition = { ...condition, where: { UserId: deToken.Id } };
-        }
         try {
-            let allProfiles = await Profile.findAll(condition);
-            res.status(200).json({ status: 'success', allProfiles: allProfiles });
+            let profile;
+            if (id) {
+                profile = await Profile.findByPk(id)
+            } else {
+                profile = await Profile.findAll(myProfiles ? { where: { UserId: deToken.Id } } : {});
+            }
+            res.status(200).json({ status: 'success', allProfiles: profile });
         } catch (error) {
             res.json(setError(error))
         }
@@ -49,20 +48,23 @@ const ProfileController = {
     },
     /**actualizar un perfil */
     updateProfile: async (req, res) => {
-        let { id } = req.params;
-        let { deToken } = req.headers;
-        let { name, surname, alias, description } = req.body;
-        //console.log(itsMyProfile(deToken, id));
-        if (! await itsMyProfile(deToken, id)) {
-            return res.status(403).json(sendMessage('error', "You can't Update this profile"))
+        try {
+            let { id } = req.params;
+            let { deToken } = req.headers;
+            let { name, surname, alias, description } = req.body;
+            //console.log(itsMyProfile(deToken, id));
+            if (! await itsMyProfile(deToken, id)) {
+                return res.status(403).json(sendMessage('error', "You can't Update this profile"))
+            }
+            if (!name && !surname && !alias && !description) {
+                return res.status(404).json(sendMessage('error', 'Missing data try again'))
+            }
+            let profileToUpdate = await Profile.findByPk(id, { include: Profile });
+            let result = await profileToUpdate.update({ name, surname, alias, description });
+            res.status(201).json(sendSuceess(result))
+        } catch (error) {
+            res.json(setError(error));
         }
-        if (!name && !surname && !alias && !description) {
-            return res.status(404).json(sendMessage('error', 'Missing data try again'))
-        }
-        let result = await Profile.update({ name, surname, alias, description }, { where: { id } });
-        if (result[0] === 0) return res.status(404).json(sendMessage('error', 'Error to Update'));
-        result = await Profile.findByPk(id, { include: { model: User } });
-        res.status(201).json(sendSuceess(result))
     },
     /**eliminar un perfil */
     deleteProfile: async (req, res) => {
