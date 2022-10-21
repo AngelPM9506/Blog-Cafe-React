@@ -22,6 +22,7 @@ module.exports = sequelize => {
         }        ,
         alias: {
             type: DataTypes.STRING,
+            unique:true,
             allowNull: false
         },
         description: {

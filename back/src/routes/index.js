@@ -1,10 +1,11 @@
 const { Router } = require("express");
-const { verifyToken } = require("../middleware");
+const { verifyToken, verifyProfile } = require("../middleware");
 const logingRoutes = require("./logingRoutes");
 const profileRoutes = require("./profileRoutes");
 const usersRoutes = require("./usersRoutes");
 const postRoutes = require("./postRoutes");
 const categoryRoutes = require("./categoryRoutes");
+const commentRoutes = require("./commentRoutes");
 
 const routes = Router();
 
@@ -13,5 +14,6 @@ routes.use('/auth', logingRoutes);
 routes.use('/profiles', verifyToken, profileRoutes);
 routes.use('/posts', verifyToken, postRoutes);
 routes.use('/categories', verifyToken, categoryRoutes);
+routes.use('/comments', verifyToken, commentRoutes);
 
 module.exports = routes;

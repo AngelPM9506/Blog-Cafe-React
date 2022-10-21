@@ -8,7 +8,7 @@ module.exports = seuqelize => {
             primaryKey: true,
             unique: true
         },
-        name: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true,
@@ -19,7 +19,7 @@ module.exports = seuqelize => {
         },
         references: {
             type: DataTypes.TEXT,
-            defaultValue: 'own comments',
+            defaultValue: 'My opinion',
             allowNull: false
         }
     });

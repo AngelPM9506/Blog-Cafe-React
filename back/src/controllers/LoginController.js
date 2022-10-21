@@ -30,7 +30,7 @@ const logingController = {
             let token = jwt.sign(
                 dataToken,
                 JSON.stringify({ key: SECRET_KEY_TOKEN, passphrase: SECRET_PHRASE_TOKEN }) || 'BlogCafe',
-                { expiresIn: '30d' }
+                { expiresIn: '7d' }
             );
             //console.log(JSON.stringify({ key: SECRET_KEY_TOKEN, passphrase: SECRET_PHRASE_TOKEN }));
             /**retornar el token */

@@ -1,5 +1,5 @@
-const { Profile, User } = require('../db');
-const { itsMyUser, itsMyProfile } = require('../Utils/auth');
+const { Profile, User, Post } = require('../db');
+const { itsMyUser, itsMyProfile, toSelectProfile } = require('../Utils/auth');
 const { setError, sendMessage, sendSuceess } = require('../Utils/setMessages');
 
 /** \/profile?myProfiles=true */
@@ -12,9 +12,11 @@ const ProfileController = {
         try {
             let profile;
             if (id) {
-                profile = await Profile.findByPk(id)
+                profile = await Profile.findByPk(id, { include: { model: Post } })
             } else {
-                profile = await Profile.findAll(myProfiles ? { where: { UserId: deToken.Id } } : {});
+                profile = await Profile.findAll(myProfiles
+                    ? { where: { UserId: deToken.Id }, include: { model: Post } }
+                    : { include: { model: Post } });
             }
             res.status(200).json({ status: 'success', allProfiles: profile });
         } catch (error) {
@@ -79,6 +81,18 @@ const ProfileController = {
             status: resul === 1 ? 'succes' : 'error',
             msg: resul === 1 ? 'Profile delete succesfuly' : 'Error to delete Profile'
         });
+    },
+    selectProfile: async (req, res) => {
+        let { profile } = req.query;
+        let { deToken } = req.headers;
+        let newToken = await toSelectProfile(deToken, profile);
+        if (!newToken) {
+            return res.status(403).json(sendMessage(
+                'error',
+                'profile not be found or not it\'s your profile, try again.'))
+        }
+        let pro
+        res.status(200).cookie('logIn_BC', `${newToken.token}`).json(sendSuceess({ ...newToken }));
     }
 }
 

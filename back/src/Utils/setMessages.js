@@ -5,10 +5,11 @@ const setError = (error) => {
     if (error.name === 'SequelizeUniqueConstraintError') {
         var { value, path } = error.errors[0];
         message = { status: 'error', error: `${firstCharacterToUpper(path)}, ${value} already exists` };
+        //console.log({...message});
     } else {
         message = { status: 'error', error: error.message || error };
     }
-    return {...message};
+    return { ...message };
 }
 
 

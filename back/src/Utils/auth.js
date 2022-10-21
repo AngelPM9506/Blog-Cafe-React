@@ -1,5 +1,8 @@
 const cripto = require('bcryptjs');
-const { User, Rolle, Profile } = require('../db');
+const { User, Rolle, Profile, Post } = require('../db');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+let { SECRET_KEY_TOKEN, SECRET_PHRASE_TOKEN } = process.env
 
 const hashPass = async (pass) => {
     try {
@@ -52,10 +55,38 @@ const itsMyProfile = async (deToken, id) => {
     return false;
 }
 
+const toSelectProfile = async (deToken, id) => {
+    let profileFound = await Profile.findByPk(id);
+    if (profileFound && (profileFound.UserId === deToken.Id)) {
+        let dataNewToken = {
+            ...deToken,
+            Profile: profileFound.id,
+            name: profileFound.name,
+            alias: profileFound.alias
+        };
+        let token = jwt.sign(
+            dataNewToken,
+            JSON.stringify({ key: SECRET_KEY_TOKEN, passphrase: SECRET_PHRASE_TOKEN }) || 'BlogCafe'
+        );
+        return { token, dataNewToken };
+    }
+    return false;
+}
+
+const itsMyPost = async (deToken, id) => {
+    let postFound = await Post.findByPk(id);
+    if (postFound && (postFound.ProfileId === deToken.Profile || deToken.Rolle === 'Admin')) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     hashPass,
     comparePass,
     isAdmin,
     itsMyUser,
-    itsMyProfile
+    itsMyProfile,
+    toSelectProfile,
+    itsMyPost
 };
