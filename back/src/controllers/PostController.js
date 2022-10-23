@@ -1,5 +1,5 @@
 const { setError, sendSuceess, sendMessage } = require('../Utils/setMessages')
-const { Post, Profile, Category, Op } = require('../db');
+const { Post, Profile, Category, Comment, Op } = require('../db');
 const { itsMyPost } = require('../Utils/auth');
 
 const PostController = {
@@ -10,10 +10,24 @@ const PostController = {
         try {
             let result;
             if (id) {
-                result = await Post.findByPk(id, { include: [{ model: Profile }, { model: Category }] });
+                result = await Post.findByPk(id, {
+                    include: [
+                        { model: Profile },
+                        { model: Category },
+                        {
+                            model: Comment,
+                            include: [Profile]
+                        }
+                    ]
+                });
             } else {
-                let condition = { include: [{ model: Profile }, { model: Category }] };
-                condition.where = title ? { title: { [Op.substring]: title } } : {}
+                let condition = {
+                    include: [
+                        { model: Profile },
+                        { model: Category }
+                    ]
+                };
+                condition.where = title ? { title: { [Op.substring]: title } } : {};
                 result = await Post.findAll(condition);
             }
             if (!result || result.length === 0) {

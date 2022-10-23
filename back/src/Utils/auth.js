@@ -1,5 +1,5 @@
 const cripto = require('bcryptjs');
-const { User, Rolle, Profile, Post } = require('../db');
+const { User, Rolle, Profile, Post, Comment } = require('../db');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 let { SECRET_KEY_TOKEN, SECRET_PHRASE_TOKEN } = process.env
@@ -81,6 +81,16 @@ const itsMyPost = async (deToken, id) => {
     return false;
 }
 
+const itsMyComment = async (deToken, id) => {
+    let commentFound = await Comment.findByPk(id);
+    let { Profile, Rolle } = deToken;
+    //console.log({commentProfile: commentFound.ProfileId, deTokenProfile: Profile});
+    if (commentFound && (commentFound.ProfileId === Profile || Rolle === 'Admin')) {
+        return true;
+    }
+    return false
+}
+
 module.exports = {
     hashPass,
     comparePass,
@@ -88,5 +98,6 @@ module.exports = {
     itsMyUser,
     itsMyProfile,
     toSelectProfile,
-    itsMyPost
+    itsMyPost,
+    itsMyComment
 };
