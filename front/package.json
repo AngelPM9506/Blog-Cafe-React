@@ -7,8 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "Blog",
-    "Cafe"
+    "cafe",
+    "personal",
+    "portafolio"
   ],
   "author": "Miguel Angel PM",
   "license": "ISC"
