@@ -1,0 +1,120 @@
+@use "../base/variables" as v;
+@use "../base//mixins" as m;
+
+header {
+    padding: 1rem;
+    .headerContainer {
+        background-color: v.$backgroundC;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 2rem;
+        display: flex;
+        flex-direction: column;
+        transition-property: all;
+        transition-duration: 0.3s;
+        transition-timing-function: ease-in-out;
+        @include m.tablet {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                h4 {
+                    font-size: 2rem;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+        }
+        .logo {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            .movileButton {
+                display: flex;
+                color: v.$primario3;
+                justify-content: center;
+                align-items: center;
+                @include m.tablet {
+                    display: none;
+                }
+            }
+            h4 {
+                margin: 0.25rem 0 0.25rem 0;
+                font-size: 2.5rem;
+                font-weight: bolder;
+                padding-bottom: 0.5rem;
+            }
+            @include m.tablet {
+                justify-content: start;
+                h4 {
+                    margin: 0;
+                    padding-bottom: 0.5rem;
+                }
+            }
+        }
+        .hidenNav {
+            display: none;
+            @include m.tablet {
+                display: flex;
+            }
+        }
+        .showNav {
+            display: flex;
+        }
+        .navContainer {
+            justify-content: center;
+            width: 100%;
+            nav {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                a {
+                    color: v.$primario3;
+                    font-size: 2rem;
+                    color: v.$primario2H;
+                    border-bottom: 2px solid v.$primario2H;
+                    border-bottom-left-radius: 1rem;
+                    transition-property: all;
+                    transition-duration: 0.3s;
+                    transition-timing-function: ease-out;
+                    max-width: max-content;
+                    padding: 0 2rem;
+                    margin: 0.5rem 0;
+                }
+            }
+            @include m.tablet {
+                nav {
+                    flex-direction: row;
+                    a {
+                        font-weight: 900;
+                        font-size: 2.25rem;
+                        color: v.$primario3;
+                        border-bottom-left-radius: 1rem;
+                        padding: 0 2rem;
+                        margin: 0 1.5rem;
+                        border: none;
+                        &:hover {
+                            color: v.$primario2H;
+                            border-bottom: 2px solid v.$primario2H;
+                        }
+                    }
+                }
+            }
+            &:last-of-type {
+                margin-top: 2.5rem;
+                border-top: 0.3rem solid v.$secundario1H;
+                @include m.tablet {
+                    margin-top: 0;
+                    border-top: none;
+                    justify-content: end;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,98 @@
+// Fuentes
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Oswald:wght@200;300;400;500;600;700&family=Signika:wght@300;400;500;600;700&display=swap');
+$titles: 'Merriweather', serif;
+$texts: 'Signika', sans-serif;
+$links: 'Signika', sans-serif;
+
+// Tamaño de Media Queries
+$telefono: 480px;
+$tablet: 800px;
+$desktop: 1024px;
+
+// paleta de colores
+$primario1: #335cc3;
+$primario2: #c39a33;
+$primario3: #9eebf8;
+$secundario1: #1d2c75;
+$secundario2: #656784;
+$secundario3: #bfc2d8;
+$background: #343246;
+
+//monocromo primario 1
+$primario1A: #00045a;
+$primario1B: #121d77;
+$primario1C: #121d77;
+$primario1D: #2d4fb3;
+$primario1E: #4b6acc;
+$primario1F: #7288dd;
+$primario1G: #94a7ee;
+$primario1H: #b4c7ff;
+
+//monocromo primario 2
+$primario2A: #553900;
+$primario2B: #73530d;
+$primario2C: #926f1c;
+$primario2D: #b28b2b;
+$primario2E: #cca843;
+$primario2F: #dec463;
+$primario2G: #efe182;
+$primario2H: #ffffa2;
+
+//monocromo primario 3
+$primario3A: #2d7f8b;
+$primario3B: #4f9da9;
+$primario3C: #6ebbc8;
+$primario3D: #8edbe8;
+$primario3E: #aeeef9;
+$primario3F: #cbf4fb;
+$primario3G: #e5f9fd;
+
+//monocromo secundario 1
+$secundario1A: #00001d;
+$secundario1B: #0a1234;
+$secundario1C: #111c4d;
+$secundario1D: #192767;
+$secundario1E: #303984;
+$secundario1F: #5054a4;
+$secundario1G: #7171c4;
+$secundario1H: #918fe6;
+
+
+//monocromo secundario 2
+$secundario2A: #0b0e26;
+$secundario2B: #23263f;
+$secundario2C: #3c3f59;
+$secundario2D: #575976;
+$secundario2E: #747693;
+$secundario2F: #9294b3;
+$secundario2G: #b2b3d3;
+$secundario2H: #d3d4f5;
+
+//monocromo primario 2
+$secundario3A: #585b6f;
+$secundario3B: #74778c;
+$secundario3C: #9194a9;
+$secundario3D: #afb2c8;
+$secundario3E: #c8cbde;
+$secundario3F: #dadce9;
+$secundario3G: #ededf4;
+
+//monocromo background
+$backgroundA: #141319;
+$backgroundB: #201f2a;
+$backgroundC: #2d2c3c;
+$backgroundD: #413f54;
+$backgroundE: #5e5b71;
+$backgroundF: #7b788f;
+$backgroundG: #9a96ae;
+
+
+//monocromo
+$blanco: #FFFFFF;
+$negro: #000000;
+
+//colores alertas
+$rojo: #c60000;
+$verde: rgb(0, 120, 0);
+
+$separacion: 4rem;
