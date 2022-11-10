@@ -31,25 +31,25 @@ class Footer extends Component {
                         <div className="redes">
                             <h3>{`Hablame`}</h3>
                             <div className="iconos">
-                                <a href="https://www.linkedin.com/in/miguel-angel-p-1404a4120/">
+                                <a target={'_blank'} rel="noreferrer" href="https://www.linkedin.com/in/miguel-angel-p-1404a4120/">
                                     <FaLinkedinIn />
                                 </a>
-                                <a href="https://github.com/AngelPM9506">
+                                <a target={'_blank'} rel="noreferrer" href="https://github.com/AngelPM9506">
                                     <ImGithub />
                                 </a>
-                                <a href="https://twitter.com/MiguelAngelPM95">
+                                <a target={'_blank'} rel="noreferrer" href="https://twitter.com/MiguelAngelPM95">
                                     <ImTwitter />
                                 </a>
-                                <a href="mailto:parramondragon1995@gmail.com">
+                                <a target={'_blank'} rel="noreferrer" href="mailto:parramondragon1995@gmail.com">
                                     <SiGmail />
                                 </a>
-                                <a href="mailto:parra_mondragon@live.com">
+                                <a target={'_blank'} rel="noreferrer" href="mailto:parra_mondragon@live.com">
                                     <SiMicrosoftoutlook />
                                 </a>
-                                <a href="https://discord.gg/bDgXZqD6">
+                                <a target={'_blank'} rel="noreferrer" href="https://discord.gg/bDgXZqD6">
                                     <SiDiscord />
                                 </a>
-                                <a href="https://wa.me/525539442126">
+                                <a target={'_blank'} rel="noreferrer" href="https://wa.me/525539442126">
                                     <FaWhatsapp />
                                 </a>
                             </div>
