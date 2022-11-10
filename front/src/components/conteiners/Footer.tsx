@@ -2,7 +2,7 @@ import { Component, ReactNode } from "react";
 import { navLink } from "src/types/navLinks/navLinks";
 import { navLinks } from "src/utils";
 import { ImGithub, ImTwitter } from "react-icons/im";
-import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa"
+import { FaLinkedinIn } from "react-icons/fa"
 import { SiGmail, SiMicrosoftoutlook, SiDiscord } from "react-icons/si"
 import GenarlNav from "../modules/GenarlNav";
 
