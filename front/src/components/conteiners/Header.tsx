@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { Divide } from 'hamburger-react';
 import { navLink } from 'src/types/navLinks/navLinks';
 import { navLinks } from 'src/utils';
+import GenarlNav from '../modules/GenarlNav';
 
 type MyState = { [x: string]: any }
 
@@ -18,7 +19,13 @@ class Header extends Component {
     this.setState({ responsiveNav: responsiveNav ? false : true });
     console.log(this.state.responsiveNav);
   }
-  
+  centralNav: navLink[] = navLinks
+    .filter((link: navLink) => link.name !== 'logIn')
+    .filter((link: navLink) => link.name !== 'logOut');
+
+  lastNav: navLink[] = navLinks
+    .filter((link: navLink) => (link.name === 'logIn' || link.name === 'logOut'));
+
   render(): ReactNode {
     return (
       <header>
@@ -32,24 +39,10 @@ class Header extends Component {
             </div>
           </article>
           <article className={`navContainer ${this.state.responsiveNav ? 'showNav' : 'hidenNav'}`}>
-            <nav>
-              {navLinks.map((link: navLink): JSX.Element | null => {
-                let { name, path } = link;
-                if (name === 'logIn' || name === 'logOut') return null;
-                return (
-                  <Link key={name} to={path}>{name}</Link>
-                )
-              })}
-            </nav>
+            <GenarlNav links={this.centralNav} />
           </article>
           <article className={`navContainer ${this.state.responsiveNav ? 'showNav' : 'hidenNav'}`}>
-            <nav>
-              {navLinks.map((link: navLink): JSX.Element | null => {
-                let { name, path } = link;
-                if (name === 'logIn' || name === 'logOut') return (<Link key={name} to={path}>{name}</Link>);
-                return null;
-              })}
-            </nav>
+            <GenarlNav links={this.lastNav} />
           </article>
           <Outlet />
         </section>

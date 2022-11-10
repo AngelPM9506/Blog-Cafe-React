@@ -3,6 +3,8 @@
 
 header {
     padding: 1rem;
+    position: fixed;
+    width: 100%;
     .headerContainer {
         background-color: v.$backgroundC;
         text-align: center;
