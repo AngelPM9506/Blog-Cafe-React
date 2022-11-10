@@ -49,9 +49,6 @@ class Footer extends Component {
                                 <a target={'_blank'} rel="noreferrer" href="https://discord.gg/bDgXZqD6">
                                     <SiDiscord />
                                 </a>
-                                <a target={'_blank'} rel="noreferrer" href="https://wa.me/525539442126">
-                                    <FaWhatsapp />
-                                </a>
                             </div>
                         </div>
                         <div className="footerNav">
