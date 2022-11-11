@@ -1,0 +1,84 @@
+@use "../base/variables" as v;
+@use "../base//mixins" as m;
+
+.logIn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .logInForm {
+        background: rgba(v.$backgroundA, 0.5);
+        border-radius: 2rem;
+        padding: 3rem;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        width: 35%;
+        h3 {
+            text-transform: uppercase;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            .componente {
+                padding: 0 0.5rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                label {
+                    flex: 0 0 16rem;
+                    color: v.$secundario2G;
+                    font-weight: bolder;
+                    font-size: 2rem;
+                    text-transform: uppercase;
+                }
+                input {
+                    flex: 1;
+                    background-color: v.$backgroundC;
+                    border: none;
+                    border-radius: 1rem;
+                    padding: 1rem;
+                    appearance: none;
+                    color: v.$primario3;
+                    &:focus {
+                        border: v.$primario1B;
+                        outline: 0.3rem solid v.$primario1B;
+                        background: v.$primario3F;
+                        color: v.$backgroundA;
+                    }
+                }
+                .input {
+                    flex: 1;
+                    display: flex;
+                    gap: 0.5rem;
+                    button {
+                        background: v.$backgroundC;
+                        border: none;
+                        border-radius: 1rem;
+                        color: v.$primario3;
+                        svg {
+                            height: 2.4rem;
+                            width: 2.4rem;
+                        }
+                    }
+                }
+            }
+            .botonSubmit {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: space-between;
+                align-items: flex-end;
+                input[type="submit"] {
+                    @include m.boton(v.$primario1, v.$primario3, v.$primario1B);
+                }
+                a {
+                    color: v.$primario3C;
+                    margin: 0.5rem 0;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

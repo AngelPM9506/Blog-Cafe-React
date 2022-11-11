@@ -18,15 +18,15 @@
 }
 
 
-@mixin boton($bgColor, $colorTexto) {
+@mixin boton($bgColor, $colorTexto, $bordeColor) {
     background-color: $bgColor;
     padding: 1rem;
     color: $colorTexto;
     font-size: 1.6rem;
     display: inline-block;
     font-weight: normal;
-    border: 1px solid v.$negro;
-    border-radius: 0.5rem;
+    border: 1px solid $bordeColor;
+    border-radius: 0.75rem;
     transition-property: background-color;
     transition-duration: .3s;
     text-align: center;
