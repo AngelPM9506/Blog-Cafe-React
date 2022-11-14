@@ -1,11 +1,11 @@
 import { LogInInput } from "src/types/login";
 import axios from 'axios';
 
-export const apiLogIn = (input: LogInInput) => {
+export const apiLogIn = async (input: LogInInput) => {
     //console.log(input);
     //return input;
-    const response = axios.post('/auth/login', input);
-    console.log(response);
+    const response = await axios.post('/auth/login', input);
+    //console.log(response);
 
     return response;
 }

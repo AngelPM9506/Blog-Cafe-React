@@ -39,3 +39,36 @@ a {
 img {
     max-width: 100%;
 }
+
+.alerta {
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    border-radius: 0.5rem;
+    p {
+        font-size: 1.75rem;
+        margin: 0;
+        padding: 0.5rem 1rem;
+    }
+    &.error {
+        background: rgba(v.$rojo, 50%);
+        border-top: 0.5rem solid v.$rojo;
+        p {
+            color: lighten(v.$rojo, 40%);
+        }
+    }
+    &.success {
+        background: rgba(v.$verde, 50%);
+        border-top: 0.5rem solid v.$verde;
+        p {
+            color: lighten(v.$verde, 40%);
+        }
+    }
+    &.warning {
+        background: rgba(v.$primario2, 50%);
+        border-top: 0.5rem solid v.$primario2;
+        p {
+            color: lighten(v.$primario2, 40%);
+        }
+    }
+}

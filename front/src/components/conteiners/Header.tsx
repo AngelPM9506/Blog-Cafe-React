@@ -5,6 +5,7 @@ import { Divide } from 'hamburger-react';
 import { navLink } from 'src/types/navLinks/navLinks';
 import { navLinks } from 'src/utils';
 import GenarlNav from '../modules/GenarlNav';
+import NavAuth from '../modules/NavAuth';
 
 type MyState = { [x: string]: any }
 
@@ -23,9 +24,6 @@ class Header extends Component {
     .filter((link: navLink) => link.name !== 'logIn')
     .filter((link: navLink) => link.name !== 'logOut');
 
-  lastNav: navLink[] = navLinks
-    .filter((link: navLink) => (link.name === 'logIn' || link.name === 'logOut'));
-
   render(): ReactNode {
     return (
       <header>
@@ -42,7 +40,7 @@ class Header extends Component {
             <GenarlNav links={this.centralNav} />
           </article>
           <article className={`navContainer ${this.state.responsiveNav ? 'showNav' : 'hidenNav'}`}>
-            <GenarlNav links={this.lastNav} />
+            <NavAuth />
           </article>
           <Outlet />
         </section>

@@ -12,10 +12,15 @@
         margin: 0 auto;
         display: flex;
         flex-direction: column;
-        width: 35%;
+        width: 95%;
+        max-width: 75rem;
         h3 {
             text-transform: uppercase;
             text-align: center;
+            font-size: 2.5rem;
+            @include m.tablet {
+                font-size: 4rem;
+            }
         }
         form {
             display: flex;
@@ -24,42 +29,67 @@
             .componente {
                 padding: 0 0.5rem;
                 display: flex;
-                align-items: center;
-                gap: 1rem;
+                flex-direction: column;
+                @include m.tablet {
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 1rem;
+                }
                 label {
-                    flex: 0 0 16rem;
                     color: v.$secundario2G;
                     font-weight: bolder;
                     font-size: 2rem;
                     text-transform: uppercase;
-                }
-                input {
-                    flex: 1;
-                    background-color: v.$backgroundC;
-                    border: none;
-                    border-radius: 1rem;
-                    padding: 1rem;
-                    appearance: none;
-                    color: v.$primario3;
-                    &:focus {
-                        border: v.$primario1B;
-                        outline: 0.3rem solid v.$primario1B;
-                        background: v.$primario3F;
-                        color: v.$backgroundA;
+                    text-align: center;
+                    margin-bottom: 0.5rem;
+                    @include m.tablet {
+                        text-align: left;
+                        flex: 0 0 16rem;
+                        margin-bottom: 0;
                     }
                 }
-                .input {
+                .inputContainer {
                     flex: 1;
                     display: flex;
-                    gap: 0.5rem;
-                    button {
-                        background: v.$backgroundC;
+                    flex-direction: column;
+                    gap: 1rem;
+                    input {
+                        flex: 1;
+                        width: 100%;
+                        background-color: v.$backgroundC;
                         border: none;
                         border-radius: 1rem;
+                        padding: 1rem;
+                        appearance: none;
                         color: v.$primario3;
-                        svg {
-                            height: 2.4rem;
-                            width: 2.4rem;
+                        &:focus {
+                            border: v.$primario1B;
+                            outline: 0.3rem solid v.$primario1B;
+                            background: v.$primario3F;
+                            color: v.$backgroundA;
+                        }
+                    }
+                    .input {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        gap: 0.5rem;
+                        button {
+                            background: v.$backgroundC;
+                            border: none;
+                            border-radius: 1rem;
+                            color: v.$primario3;
+                            max-width: max-content;
+                            @include m.tablet{
+                                padding: 0.50rem;
+                            }
+                            svg {
+                                height: 2.4rem;
+                                width: 2.4rem;
+                            }
+                        }
+                        @include m.tablet {
+                            flex-direction: row;
                         }
                     }
                 }
@@ -67,9 +97,9 @@
             .botonSubmit {
                 margin-top: 1rem;
                 display: flex;
-                flex-direction: row-reverse;
-                justify-content: space-between;
-                align-items: flex-end;
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
                 input[type="submit"] {
                     @include m.boton(v.$primario1, v.$primario3, v.$primario1B);
                 }
@@ -77,6 +107,12 @@
                     color: v.$primario3C;
                     margin: 0.5rem 0;
                     text-decoration: underline;
+                }
+                @include m.tablet{
+                    align-items: flex-end;
+                    flex-direction: row;
+                    flex-direction: row-reverse;
+                    justify-content: space-between;                    
                 }
             }
         }

@@ -6,6 +6,7 @@ import App from './components';
 import './scss/index.scss';
 import { store } from './store';
 import axios from 'axios';
+import { CookiesProvider } from 'react-cookie';
 
 axios.defaults.baseURL = process.env.REACT_APP_API || 'http://127.0.0.1:3001/api';
 
@@ -13,11 +14,13 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
+  <CookiesProvider>
     <Provider store={store}>
-      <App />
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </Provider>
-  </BrowserRouter>
+  </CookiesProvider>
 );
 
 // const toRender = (

@@ -1,8 +1,13 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { useCookies } from 'react-cookie'
+import { Navigate } from 'react-router';
 import FormLogIn from '../modules/FormLogIn'
 
-export class Login extends Component {
-  render() {
+const Login = () => {
+  const [cookies, setCookies] = useCookies(['BlogFSIngAP']);
+  if (cookies.BlogFSIngAP) {
+    return <Navigate to={'/'} />
+  } else {
     return (
       <main className='logIn'>
         <section className='logInForm'>
