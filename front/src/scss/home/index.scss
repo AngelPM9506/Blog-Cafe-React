@@ -1,0 +1,25 @@
+@use "../base/variables" as v;
+@use "../base//mixins" as m;
+
+.home {
+    height: 100%;
+    width: 95%;
+    max-width: 140rem;
+    margin: 0 auto;
+    section {
+        @include m.tablet {
+            height: 92vh;
+        }
+    }
+    .resumen{
+
+        @include m.tablet{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .article{
+            padding: 2rem;
+        }
+    }
+}

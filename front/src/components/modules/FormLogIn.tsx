@@ -93,10 +93,6 @@ const FormLogIn = () => {
                 <Link to={'/olvido'}>Olvidaste tu contraseña?</Link>
                 <Link to={'/registro'}>Crear cuenta?</Link>
             </div>
-            <div>
-                <pre><p>{JSON.stringify(stateDate, null, 2)}</p></pre>
-                <p>{JSON.stringify(stateToken, null, 3)}</p>
-            </div>
         </form >
     )
 }

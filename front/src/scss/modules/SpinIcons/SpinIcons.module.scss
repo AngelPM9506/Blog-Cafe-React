@@ -1,0 +1,158 @@
+@use "../../base/variables" as v;
+@use "../../base//mixins" as m;
+
+$dimensiones: 25rem;
+$dimensionesUpTablet: 50rem;
+$escalado: 3;
+
+.spiningIconsWrapper {
+    position: relative;
+    width: $dimensiones;
+    height: $dimensiones;
+    border-radius: 50%;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    font-weight: bold;
+    @include m.tablet {
+        width: $dimensionesUpTablet;
+        height: $dimensionesUpTablet;
+    }
+    .spiningIconsPrim {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        animation: spin 50s linear infinite;
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: max-content;
+            height: min-content;
+            border: solid 0.25rem;
+            border-radius: 50%;
+            padding: 0.25rem;
+            position: absolute;
+            transform-origin: 0 ($dimensiones/4);
+            top: 0;
+            left: 50%;
+            @include m.tablet {
+                transform-origin: 0 ($dimensionesUpTablet/4);
+                padding: 2.25rem;
+            }
+            svg {
+                scale: 0.8;
+                @include m.tablet {
+                    scale: 1.75;
+                }
+            }
+        }
+    }
+    .spiningIconsSecu {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        animation: spinInv 50s linear infinite;
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: max-content;
+            height: min-content;
+            border: solid 0.25rem;
+            border-radius: 50%;
+            padding: 0.5rem;
+            position: absolute;
+            transform-origin: 0 ($dimensiones/2);
+            top: 0;
+            left: 50%;
+            @include m.tablet {
+                transform-origin: 0 ($dimensionesUpTablet/2);
+                padding: 2.25rem;
+            }
+            svg {
+                scale: 0.9;
+                @include m.tablet {
+                    scale: 1.75;
+                }
+            }
+        }
+    }
+    .children {
+        color: v.$primario2;
+        border: solid 0.25rem;
+        border-radius: 50%;
+        padding: 2.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: max-content;
+        width: max-content;
+        p {
+            color: v.$primario2;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                scale: 0.9;
+                @include m.tablet {
+                    scale: 1.75;
+                }
+            }
+        }
+    }
+}
+
+.JS {
+    color: #f0db4f;
+}
+.TS {
+    color: #007acc;
+}
+.PHP {
+    color: #8993be;
+}
+.REA {
+    color: #61dbfb;
+}
+.NEX {
+    color: #ffffff;
+}
+.NOD {
+    color: #3c873a;
+}
+.HTML {
+    color: #e34c26;
+}
+.SAS {
+    color: #cd6799;
+}
+.CSS {
+    color: #2965f1;
+}
+.ARD {
+    color: #00979c;
+}
+.LAR {
+    color: #f05340;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(360deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes spinInv {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

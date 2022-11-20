@@ -11,7 +11,7 @@ const SpinText = (
     const length = text.length; // cantidad de letras repartidas
     const deg = 360 / length; // posición de cada letra destribuida en todo el circulo
     const { spiningTextWrapper, spiningText } = styles;
-    console.log(styles);
+    //console.log(styles);
 
     return (
         <div className={spiningTextWrapper}>
