@@ -2,10 +2,12 @@
 @use "../../base//mixins" as m;
 
 $dimensiones: 25rem;
-$dimensionesUpTablet: 50rem;
+$dimensionesUpTablet: 55rem;
 $escalado: 3;
 
 .spiningIconsWrapper {
+    z-index: -1;
+    box-shadow: 0px 0px 25px 10px rgba(20, 19, 25, 1);
     position: relative;
     width: $dimensiones;
     height: $dimensiones;
@@ -23,51 +25,22 @@ $escalado: 3;
         width: 50%;
         height: 50%;
         animation: spin 50s linear infinite;
+        z-index: 3;
         span {
             display: flex;
             justify-content: center;
             align-items: center;
             width: max-content;
             height: min-content;
-            border: solid 0.25rem;
+            border: solid 0.15rem;
             border-radius: 50%;
-            padding: 0.25rem;
+            padding: 0.4rem;
             position: absolute;
             transform-origin: 0 ($dimensiones/4);
             top: 0;
             left: 50%;
             @include m.tablet {
                 transform-origin: 0 ($dimensionesUpTablet/4);
-                padding: 2.25rem;
-            }
-            svg {
-                scale: 0.8;
-                @include m.tablet {
-                    scale: 1.75;
-                }
-            }
-        }
-    }
-    .spiningIconsSecu {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        animation: spinInv 50s linear infinite;
-        span {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: max-content;
-            height: min-content;
-            border: solid 0.25rem;
-            border-radius: 50%;
-            padding: 0.5rem;
-            position: absolute;
-            transform-origin: 0 ($dimensiones/2);
-            top: 0;
-            left: 50%;
-            @include m.tablet {
-                transform-origin: 0 ($dimensionesUpTablet/2);
                 padding: 2.25rem;
             }
             svg {
@@ -78,18 +51,86 @@ $escalado: 3;
             }
         }
     }
+    .spiningIconsSecu {
+        position: absolute;
+        width: 90%;
+        height: 90%;
+        animation: spinInv 50s linear infinite;
+        z-index: 3;
+        span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: max-content;
+            height: min-content;
+            border: solid 0.15rem;
+            border-radius: 50%;
+            padding: 0.4rem;
+            position: absolute;
+            transform-origin: 0 ($dimensiones/2.2);
+            top: 0;
+            left: 50%;
+            @include m.tablet {
+                transform-origin: 0 ($dimensionesUpTablet/2.2);
+                padding: 2.25rem;
+            }
+            svg {
+                scale: 1;
+                @include m.tablet {
+                    scale: 1.75;
+                }
+                @include m.desktop{
+                    scale: 2;
+                }
+            }
+        }
+    }
+    .anilloExt {
+        position: absolute;
+        background: linear-gradient(to top left, v.$backgroundA 28.5%, rgba(v.$backgroundC, 100%) 35%);
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        animation: spin 25s linear infinite;
+        z-index: 2;
+    }
+
+    .anilloInt {
+        position: absolute;
+        box-shadow: 0px 0px 25px 10px rgba(20, 19, 25, 1);
+        background: linear-gradient(to top right, v.$backgroundA 37.5%, v.$backgroundC 50%);
+        border-radius: 50%;
+        width: 60%;
+        height: 60%;
+        animation: spinInv 25s linear infinite;
+        z-index: 2;
+    }
+    .anilloCentral{
+        position: absolute;
+        border-radius: 50%;
+        box-shadow: 0px 0px 25px 10px rgba(20, 19, 25, 1);
+        background: v.$backgroundC;
+        height: 22.5%;
+        width: 22.5%;
+        z-index: 4;
+
+    }
     .children {
-        color: v.$primario2;
+        z-index: 5;
+        color: v.$verde;
         border: solid 0.25rem;
         border-radius: 50%;
-        padding: 2.25rem;
+        padding: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         height: max-content;
         width: max-content;
+        @include m.tablet {
+            padding: 2.25rem;
+        }
         p {
-            color: v.$primario2;
+            color: v.$verde;
             padding: 0;
             margin: 0;
             display: flex;

@@ -2,12 +2,12 @@
 @use "../base//mixins" as m;
 
 main {
-    padding: 10rem 2.75rem 0 2.75rem;
+    margin: 10rem 2.75rem 0 2.75rem;
     min-height: 100vh;
     @include m.tablet {
-        padding: 14.5rem 2.75rem 0 2.75rem;
+        margin: 14.5rem 2.75rem 0 2.75rem;
     }
     @include m.desktop {
-        padding: 7.5rem 2.75rem 0 2.75rem;
+        margin: 7.5rem 2.75rem 0 2.75rem;
     }
 }

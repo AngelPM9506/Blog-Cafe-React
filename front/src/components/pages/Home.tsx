@@ -12,46 +12,81 @@ import {
     SiSass,
     SiCss3,
     SiArduino,
-    SiLaravel
+    SiLaravel,
+    SiRedux,
+    SiExpress,
+    SiAngularjs,
+    SiWindows,
+    SiLinux,
+    SiMongodb,
+    SiPostgresql,
+    SiPrisma,
+    SiSequelize,
+    SiVisualstudiocode,
+    SiAtom
 } from 'react-icons/si';
 import { SlChemistry } from 'react-icons/sl';
 import { SpinIcon } from 'src/types/props';
-import { GiTechnoHeart } from 'react-icons/gi'
+import { GiTechnoHeart, GiMaterialsScience } from 'react-icons/gi';
+import { FcBiotech } from 'react-icons/fc';
+import { GrMysql } from 'react-icons/gr'
 
 export class Home extends Component {
     iconsLenguajes: SpinIcon[] = [
         { element: <SiJavascript />, className: 'JS' },
+        { element: <SiNano />, className: 'NANO' },
         { element: <SiPhp />, className: 'PHP' },
         { element: <SiTypescript />, className: 'TS' },
+        { element: <GiMaterialsScience />, className: 'CFM' },
         { element: <SiHtml5 />, className: 'HTML' },
+        { element: <SlChemistry />, className: 'CHEM' },
         { element: <SiCss3 />, className: 'CSS' },
+        { element: <FcBiotech />, className: 'BIO' },
     ]
     iconsFrameworks: SpinIcon[] = [
-        { element: <SiNano />, className: 'NANO' },
         { element: <SiNodedotjs />, className: 'NOD' },
         { element: <SiReact />, className: 'REA' },
         { element: <SiNextdotjs />, className: 'NEX' },
-        { element: <SlChemistry />, className: 'CHEM' },
         { element: <SiArduino />, className: 'ARD' },
         { element: <SiSass />, className: 'SAS' },
         { element: <SiLaravel />, className: 'LAR' },
+        { element: <SiRedux />, className: 'RED' },
+        { element: <SiExpress />, className: 'EXP' },
+        { element: <SiAngularjs />, className: 'ANG' },
+        { element: <SiWindows />, className: 'WIN' },
+        { element: <SiLinux />, className: 'LIN' },
+        { element: <SiMongodb />, className: 'MON' },
+        { element: <SiPostgresql />, className: 'POS' },
+        { element: <GrMysql />, className: 'MYS' },
+        { element: <SiPrisma />, className: 'PRIS' },
+        { element: <SiSequelize />, className: 'SEQ' },
+        { element: <SiVisualstudiocode />, className: 'VSC' },
+        { element: <SiAtom />, className: 'ATM' },
     ]
     render(): ReactNode {
         return (
             <main className='home'>
                 <section className='resumen'>
                     <article>
-                        <h4>Hola, que tal?</h4>
-                        <h2>Soy Miguel Angel P.M.</h2>
-                        <h3>y este es mi blog y portafolio</h3>
-                        <h5>Un poco sobremi:</h5>
-                        <p>Soy Tecnico laboratorista químico, Ingeniero en nanotecnología, desarollador full-Stack y Maestro en direccion e ingenieria web</p>
+                        <div className="text">
+                            <h3>Hola, que tal?</h3>
+                            <h2>Soy Miguel Angel Parra Mondragon</h2>
+                            <h3>Este es mi blog y portafolio</h3>
+                        </div>
+                        <div className='pictures'>
+                            <div className='spinIcons'>
+                                <SpinIcons
+                                    iconsLenguajes={this.iconsLenguajes}
+                                    iconsFrameworks={this.iconsFrameworks}>
+                                    <p><GiTechnoHeart /></p>
+                                </SpinIcons >
+                            </div>
+                            <div className="foto"></div>
+                        </div>
+                        <div className="text">
+                            <p>Soy Técnico laboratorista químico, Ingeniero en nanotecnología, desarrollador full-Stack y Maestro en dirección e ingeniería web, me apasiona la ciencia y la tecnología.</p>
+                        </div>
                     </article>
-                    <SpinIcons
-                        iconsLenguajes={this.iconsLenguajes}
-                        iconsFrameworks={this.iconsFrameworks}>
-                        <p><GiTechnoHeart /></p>
-                    </SpinIcons >
                 </section>
                 <section>
                     <h2>proyectos</h2>

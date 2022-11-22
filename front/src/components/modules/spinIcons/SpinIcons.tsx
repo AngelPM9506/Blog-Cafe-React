@@ -11,10 +11,10 @@ const SpinIcons = ({
     const calcRotation = (nIcons: number) => {
         return 360 / nIcons
     }
-    const { spiningIconsWrapper, spiningIconsPrim, spiningIconsSecu, children: child } = styles;
+    const { spiningIconsWrapper, spiningIconsPrim, spiningIconsSecu, children: child, anilloExt, anilloInt, anilloCentral } = styles;
 
     return (
-        <article className={spiningIconsWrapper}>
+        <div className={spiningIconsWrapper}>
             <div className={spiningIconsPrim}>
                 <p>{iconsLenguajes.map((icon: SpinIcon, i: number) => {
                     const { element, className } = icon;
@@ -41,10 +41,13 @@ const SpinIcons = ({
                     );
                 })}</p>
             </div>
+            <div className={anilloExt}></div>
+            <div className={anilloInt}></div>
+            <div className={anilloCentral}></div>
             <div className={child}>
                 {children ? children : null}
             </div>
-        </article >
+        </div >
     )
 }
 

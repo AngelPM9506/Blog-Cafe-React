@@ -1,10 +1,10 @@
 import { navLink } from "src/types/navLinks/navLinks";
 
 export const navLinks: navLink[] = [
-    { name: 'Inicio', path: '/' },
-    { name: 'Blog', path: '/blog' },
-    { name: 'AboutMe', path: '/about' },
-    { name: 'Contacto', path: '/contacto' }
+  { name: 'Contacto', path: '/contacto' },
+  { name: 'Blog', path: '/blog' },
+  { name: 'AboutMe', path: '/about' },
+  { name: 'Inicio', path: '/' },
   ];
 
 // eslint-disable-next-line no-useless-escape
