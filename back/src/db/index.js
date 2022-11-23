@@ -6,6 +6,7 @@ const modelProfile = require('./models/Profile');
 const modelPost = require('./models/Post');
 const modelCategory = require('./models/Category');
 const modelComment = require('./models/Comment');
+const modelProyect = require('./models/Proyect');
 
 const sequelize = NODE_ENV === 'production'
     ? new Sequelize({
@@ -41,6 +42,7 @@ modelProfile(sequelize);
 modelPost(sequelize);
 modelCategory(sequelize);
 modelComment(sequelize);
+modelProyect(sequelize);
 
 /**relacion entre tablas*/
 const { User, Rolle, Profile, Post, Category, Comment } = sequelize.models;

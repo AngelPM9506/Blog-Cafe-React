@@ -21,6 +21,9 @@ module.exports = seuqelize => {
             type: DataTypes.TEXT,
             defaultValue: 'My opinion',
             allowNull: false
+        }, 
+        picture: {
+            type: DataTypes.STRING
         }
     });
 }

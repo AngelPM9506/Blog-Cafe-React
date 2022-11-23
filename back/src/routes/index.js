@@ -6,6 +6,7 @@ const usersRoutes = require("./usersRoutes");
 const postRoutes = require("./postRoutes");
 const categoryRoutes = require("./categoryRoutes");
 const commentRoutes = require("./commentRoutes");
+const proyectRouter = require("./ProyectsRoutes");
 
 const routes = Router();
 
@@ -15,5 +16,6 @@ routes.use('/profiles', verifyToken, profileRoutes);
 routes.use('/posts', verifyToken, postRoutes);
 routes.use('/categories', verifyToken, categoryRoutes);
 routes.use('/comments', verifyToken, commentRoutes);
+routes.use('/proyects', proyectRouter);
 
 module.exports = routes;
