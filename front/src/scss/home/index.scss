@@ -16,12 +16,18 @@
                 font-size: 1.5rem;
             }
         }
+        .pictures{
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
         @include m.desktop {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
             align-items: center;
-            height: 92vh;
+            min-height: 92vh;
+            height: max-content;
             .text {
                 h2{
                     font-size: 5rem;
@@ -34,11 +40,6 @@
                     max-width: 95%;
                     width: 120rem;
                 }
-            }
-            .pictures{
-                display: flex;
-                justify-content: center;
-                width: 100%;
             }
         }
     }

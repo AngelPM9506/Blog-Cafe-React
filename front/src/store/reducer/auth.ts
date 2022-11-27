@@ -34,7 +34,7 @@ export const logInSlice = createSlice({
                 state.status = 'loading';
             })
             .addCase(initSesion.fulfilled, (state, action) => {
-                state.status = 'success';
+                state.status = action.payload.status === 'error' ? 'error' : 'success';
                 state.token = action.payload.token !== undefined
                     ? action.payload.token : '';
                 state.dataUser = action.payload.token !== undefined

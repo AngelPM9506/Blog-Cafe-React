@@ -30,6 +30,7 @@ import { SpinIcon } from 'src/types/props';
 import { GiTechnoHeart, GiMaterialsScience } from 'react-icons/gi';
 import { FcBiotech } from 'react-icons/fc';
 import { GrMysql } from 'react-icons/gr'
+import ListProyects from '../modules/ListProyects';
 
 export class Home extends Component {
     iconsLenguajes: SpinIcon[] = [
@@ -89,7 +90,7 @@ export class Home extends Component {
                     </article>
                 </section>
                 <section>
-                    <h2>proyectos</h2>
+                    <ListProyects />
                 </section>
                 <section>
                     <h2>ultimos posts</h2>
