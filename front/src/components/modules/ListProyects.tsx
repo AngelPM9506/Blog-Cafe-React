@@ -17,7 +17,7 @@ function ListProyects() {
   } else {
     return (
       <article className='homeProyectos'>
-        {proyectos && proyectos.map(proyecto => <CardProyectos Proyecto={proyecto} /> )}
+        {proyectos && proyectos.map((proyecto, i) => <CardProyectos key={i} Proyecto={proyecto} />)}
       </article>
     )
   }

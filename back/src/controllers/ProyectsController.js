@@ -1,5 +1,5 @@
 const { Proyect } = require("../db");
-const { uploadFile, updateFile, deletefile } = require("../s3config");
+const { uploadFile, updateFile, deletefile, getUrl } = require("../s3config");
 const { isAdmin } = require("../Utils/auth");
 const { setError, sendSuceess, sendMessage } = require("../Utils/setMessages");
 
@@ -15,9 +15,15 @@ const ProyectController = {
                 if (!result) {
                     return res.status(404).json(sendMessage('error', 'Projet not found'));
                 }
+                result.image = await getUrl(result.image);
                 return res.status(200).json(sendSuceess(result));
             } else {
-                result = await Proyect.findAll(numPro ? { limit: parseInt(numPro) } : {});
+                let result = await Proyect.findAll(numPro ? { limit: parseInt(numPro) } : {});
+                //result = [];
+                for (const proy of result) {
+                    let urlImage = await getUrl(proy.image);
+                    proy.image = urlImage;
+                }
                 return res.status(200).json(sendSuceess(result));
             }
         } catch (error) {

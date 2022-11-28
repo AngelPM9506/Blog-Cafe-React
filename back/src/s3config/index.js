@@ -1,4 +1,5 @@
 const { S3Client, PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner')
 const {
     AWS_S3_BUKET_NAME,
     AWS_S3_REGION,
@@ -82,6 +83,14 @@ const fileController = {
             Key: nameFile
         })
         return await clientS3.send(comand);
+    },
+    getUrl: async (nameFile) => {
+        const comand = new GetObjectCommand({
+            Bucket: AWS_S3_BUKET_NAME,
+            Key: nameFile
+        })
+        const result = await getSignedUrl(clientS3, comand, { expiresIn: 10200 });
+        return result;
     }
 }
 
