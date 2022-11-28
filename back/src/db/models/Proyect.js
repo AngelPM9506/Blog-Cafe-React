@@ -20,7 +20,8 @@ module.exports = seuqelize => {
         },
         image: {
             type: DataTypes.STRING,
-            defaultValue: 'imagen defaul de un proyecto'
+            defaultValue: 'projects/default-img-proy.jpeg',
+            allowNull: false
         },
         date: {
             type: DataTypes.DATE,

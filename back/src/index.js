@@ -4,6 +4,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
+const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 /**declare server of express */
@@ -40,7 +41,11 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 /**set corrs */
 app.use(cors(corsOption));
-
+/**subida de archivos por fileUpload */
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: './src/s3config/temp/'
+}));
 
 /**set routes */
 // app.get('/welcom', (req, res) => {
