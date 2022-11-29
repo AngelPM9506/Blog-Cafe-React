@@ -16,8 +16,11 @@ function ListProyects() {
     return (<p>Loading</p>)
   } else {
     return (
-      <article className='homeProyectos'>
-        {proyectos && proyectos.map((proyecto, i) => <CardProyectos key={i} Proyecto={proyecto} />)}
+      <article className='misProyectos'>
+        <h2>Ultimos Proyectos</h2>
+        <section className='homeProyectos'>
+          {proyectos && proyectos.map((proyecto, i) => <CardProyectos key={i} Proyecto={proyecto} />)}
+        </section>
       </article>
     )
   }
