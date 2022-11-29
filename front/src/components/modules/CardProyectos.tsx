@@ -7,7 +7,7 @@ const CardProyectos = ({ Proyecto }: { Proyecto: Proyect }) => {
     const fecha = date.toString().split('T').shift().split('-').join('/');
     return (
         <div className='cardProyecto'>
-            <Link className="info" to={`/projects/${id}`}>
+            <Link className="info" to={`/proyectos/${id}`}>
                 <div className="imagen">
                     <picture>
                         <img src={image} alt="" />

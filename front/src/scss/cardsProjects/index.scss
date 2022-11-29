@@ -7,65 +7,103 @@
     align-items: center;
     justify-content: center;
     padding: 2rem;
-    margin: 1rem 0;
-    background: rgba(v.$primario1, 5%);
+    margin: 0.5rem 0;
+    overflow: hidden;
+    background: rgba(v.$primario1, 2%);
+    border: 1rem;
+    h2 {
+        padding: 0.5rem 0;
+        margin: 1rem 0;
+        font-size: 3rem;
+        @include m.tablet {
+            font-size: 4rem;
+        }
+    }
     .homeProyectos {
         position: relative;
-        width: 30rem;
-        height: 15rem;
-        margin: 15rem 0 20rem 0;
+        width: 35rem;
+        height: 20rem;
+        margin: 2.5rem 0 10rem 0;
         transform-style: preserve-3d;
-        animation: rotando 120s linear infinite;
+        animation: rotando 30s linear infinite;
+        @include m.tablet {
+            margin: 5rem 0 5rem 0;
+            animation: rotando 120s linear infinite;
+        }
         .cardProyecto {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            grid-template-columns: repeat(2, 1fr);
             position: absolute;
             top: 0;
             left: 0;
-            height: 15rem;
-            width: 40rem;
-            margin: 0 5rem;
+            height: 25rem;
+            width: 30rem;
             transform-origin: center;
             transform-style: preserve-3d;
             -webkit-box-reflect: below 0px linear-gradient(transparent, transparent, #0000001a);
-            @for $i from 1 to 6{
-                &:nth-child(#{$i}){
-                    transform: rotateY($i * 65deg) translateZ(-40rem);
+            @for $i from 1 to 6 {
+                &:nth-child(#{$i}) {
+                    transform: rotateY($i * 60deg) translateZ(-40rem);
                 }
             }
+            @include m.tablet {
+                padding: 1rem;
+                height: 20rem;
+                width: 47.5rem;
+            }
             .info {
-                position: absolute;
-                top: 0;
-                left: 0;
+                display: grid;
+                grid-template-columns: 100%;
+                grid-template-rows: 70% 30%;
+                align-items: center;
                 height: 100%;
                 width: 100%;
                 object-fit: contain;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
                 gap: 2rem;
                 padding: 2rem;
-                background-color: v.$backgroundA;
+                margin: 0 1rem;
+                background-color: rgba(v.$backgroundA, 95%);
+                border-radius: 1rem;
+                @include m.tablet {
+                    grid-template-columns: 50% 50%;
+                    grid-template-rows: 100%;
+                }
                 .imagen {
                     overflow: hidden;
                     border-radius: 1rem;
                     width: 100%;
                     height: 100%;
-                    picture{
+                    picture {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
                         border-radius: 1rem;
                         height: 100%;
                         width: 100%;
-                        .img{
+                        img {
+                            border-radius: 1rem;
                             height: 100%;
                             width: 100%;
                         }
                     }
                 }
                 .datos {
-                    h3{
-                        font-size: 1.5rem;
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    transform: rotateY(180deg);
+                    padding: 0 1rem;
+                    h3 {
+                        font-size: 1.4rem;
                         margin: 0.5rem 0;
                         padding: 0;
                     }
-                    p{
+                    p {
                         margin: 0;
                         padding: 0;
                         display: flex;
@@ -77,13 +115,18 @@
             }
         }
     }
+    .verTodos {
+        @include m.boton(rgba(v.$primario1, 75%), v.$negro, v.$background);
+        font-weight: 500;
+        font-size: 2rem;
+    }
 }
 
 @keyframes rotando {
     0% {
-        transform: perspective(100rem) rotateY(0deg);
+        transform: perspective(300rem) rotateY(0deg);
     }
     100% {
-        transform: perspective(100rem) rotateY(360deg);
+        transform: perspective(300rem) rotateY(360deg);
     }
 }

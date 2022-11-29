@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/store/hooks';
 import { getProys, projects, status } from 'src/store/reducer/proyects'
 import CardProyectos from './CardProyectos';
@@ -9,7 +10,7 @@ function ListProyects() {
   const statusProjects = useAppSelector(status);
 
   useEffect(() => {
-    dispatch(getProys({}));
+    dispatch(getProys({ numPro: 6 }));
   }, [dispatch]);
 
   if (statusProjects === 'loading') {
@@ -21,6 +22,7 @@ function ListProyects() {
         <section className='homeProyectos'>
           {proyectos && proyectos.map((proyecto, i) => <CardProyectos key={i} Proyecto={proyecto} />)}
         </section>
+        <Link to={'/proyectos'} className={'verTodos'} >Ver todos</Link>
       </article>
     )
   }
