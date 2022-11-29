@@ -18,7 +18,7 @@ class Header extends Component {
   changeNavSatet = () => {
     let { responsiveNav } = this.state;
     this.setState({ responsiveNav: responsiveNav ? false : true });
-    console.log(this.state.responsiveNav);
+    //console.log(this.state.responsiveNav);
   }
   centralNav: navLink[] = navLinks
     .filter((link: navLink) => link.name !== 'logIn')
@@ -30,17 +30,17 @@ class Header extends Component {
         <section className='headerContainer'>
           <article className="logo">
             <Link to={'/'}>
-              <h4>Mtr. Miguel A.P.M.</h4>
+              <h4>Mtr. M.A.P.M.</h4>
             </Link>
             <div className={`movileButton`}>
-              <Divide onToggle={this.changeNavSatet} />
+              <Divide onToggle={this.changeNavSatet} toggled={this.state.responsiveNav} />
             </div>
           </article>
           <article className={`navContainer ${this.state.responsiveNav ? 'showNav' : 'hidenNav'}`}>
-            <GenarlNav links={this.centralNav} />
+            <GenarlNav links={this.centralNav} responsive={this.changeNavSatet} />
           </article>
           <article className={`navContainer ${this.state.responsiveNav ? 'showNav' : 'hidenNav'}`}>
-            <NavAuth />
+            <NavAuth responsive={this.changeNavSatet} />
           </article>
           <Outlet />
         </section>

@@ -1,7 +1,8 @@
 import { navLink } from "../navLinks/navLinks";
 
 export interface PropsGenNav {
-    links: navLink[]
+    links: navLink[],
+    responsive?: Function
 }
 
 export interface SpinIcon {
@@ -17,3 +18,14 @@ export interface PropsSpinIcons {
     children?: JSX.Element
 }
 
+export interface ListProysProps {
+    numberOfProys: number,
+    classNames: {
+        article: string,
+        section: string,
+        card: {
+            image: string,
+            datos: string
+        }
+    }
+}

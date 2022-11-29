@@ -1,6 +1,7 @@
-import React, { ChangeEvent, MouseEvent, useState } from 'react'
+import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addPrueba, incrementX, removePrueba, selectPrueba } from 'src/store/reducer/prueba';
+import ScrollToTopOnMount from '../modules/ScrollToTopOnMount';
 
 export const Pruebas = () => {
   const testCount = useSelector(selectPrueba);
@@ -14,8 +15,10 @@ export const Pruebas = () => {
     event.preventDefault();
     dispatch(incrementX(internalState))
   }
+  useEffect(() => { window.scrollTo(0, 0) }, []);
   return (
     <main>
+      <ScrollToTopOnMount />
       <h2>Pruebas</h2>
       <button onClick={() => dispatch(removePrueba())}>-</button>
       <p>{testCount}</p>

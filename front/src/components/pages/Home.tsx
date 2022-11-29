@@ -31,6 +31,7 @@ import { GiTechnoHeart, GiMaterialsScience } from 'react-icons/gi';
 import { FcBiotech } from 'react-icons/fc';
 import { GrMysql } from 'react-icons/gr'
 import ListProyects from '../modules/ListProyects';
+import ScrollToTopOnMount from '../modules/ScrollToTopOnMount';
 
 export class Home extends Component {
     iconsLenguajes: SpinIcon[] = [
@@ -67,6 +68,7 @@ export class Home extends Component {
     render(): ReactNode {
         return (
             <main className='home'>
+                <ScrollToTopOnMount />
                 <section className='resumen'>
                     <article>
                         <div className="text">
